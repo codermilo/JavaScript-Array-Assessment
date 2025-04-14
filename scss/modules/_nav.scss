@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        height: fit-content;
+    }
+}
+
+.header-logo {
+    flex: 1;
+    max-width: 400px;
+    margin-right: auto;
+
+    @include mq(small) {
+        max-width: 345px;
+    }
+
+    @include mq(medium) {
+        max-width: 374px;
+    }
+}

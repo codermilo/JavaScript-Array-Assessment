@@ -1,0 +1,113 @@
+.container {
+    margin-right: auto;
+    margin-left: auto;
+
+    @include mq(small) {
+        width: 750px;
+    }
+
+    @include mq(medium) {
+        width: 970px;
+    }
+
+    @include mq(large) {
+        width: 1200px;
+    }
+}
+
+.page-wrapper {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 1080px;
+
+    @include mq(large) {
+        height: fit-content;
+        max-height: fit-content;
+    }
+
+    margin-inline: auto;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.generated-image {
+    flex: 1;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    background-image: url(https://picsum.photos/id/1050/1048/526.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include mq(medium) {
+        min-height: 80vh;
+    }
+
+    @include mq(large) {
+        min-height: 60vh;
+    }
+}
+
+.display-glex {
+    display: flex;
+}
+
+.main-img-btn-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0 0.5rem 0;
+}
+
+.image-gallery-container {
+    min-height: 50vh;
+    margin-top: 1rem;
+
+    p,
+    h2 {
+        margin: 0;
+    }
+
+
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.5rem 0;
+        margin-inline: -0.5rem;
+
+        .saved-img-container {
+            width: 100%;
+            height: 250px;
+            padding: 0.5rem;
+
+            @include mq(small) {
+                width: calc(33.33%) !important;
+                height: 250px;
+            }
+
+            .saved-img-inner {
+                background-color: aqua;
+                height: 100%;
+                width: 100%;
+                background-image: url(https://picsum.photos/id/250/250/526.webp);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                @include mq(small) {
+                    background-color: black;
+                }
+            }
+        }
+    }
+}

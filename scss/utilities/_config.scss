@@ -1,0 +1,135 @@
+// ==========================================================================
+// Global Config
+// ==========================================================================
+
+// Font Stacks
+
+$font-url--google : 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+$font-family--primary : 'Poppins',
+'Helvetica Neue',
+Helvetica,
+Arial,
+sans-serif;
+
+// Font Weights
+
+$font-weight--thin : 100;
+$font-weight--light : 300;
+$font-weight--medium : 400;
+$font-weight--bold : 700;
+$font-weight--ultra-bold : 900;
+
+// Descriptive Base Colors
+
+$white : #fff;
+$black : #0b0b0b;
+$grey : #797e83;
+
+
+$blue-grey: #67809f;
+$purple : #926fb1;
+$blue : #4183d7;
+$green : #2ecc71;
+$red : #d64541;
+$yellow-orange : #f7b322;
+$hot-pink : #f62459;
+$orange : #ce4125;
+
+$heading-grey : #999aa2;
+$heading-grey-hovered : #7e808a;
+
+// Border colors
+$dev-hov : #ab361f;
+$dev-hov-b : #9a311c;
+$sec-hov: #e80a42;
+$sec-hov-b: #d4093c;
+$web-hov: #7e57a0;
+$web-hov-b: #735093;
+$tele-hov: #c42e2a;
+$tele-hov-b: #b32a27;
+$digi-hov: #26ab5f;
+$digi-hov-b: #239a55;
+$it-hov: #2a6ec6;
+$it-hov-b: #2665b5;
+$soft-hov: #e8a008;
+$soft-hov-b: #d49308;
+
+// Main-nav sub menu colors
+
+$sub-menu-colors: (
+    security : #de093f,
+    software : #526781,
+    it : #286abd,
+    digital : #25a25a,
+    telecoms : #bc2c28,
+    web : #79539a,
+    developer : #a3331d
+);
+
+// Color Usage
+
+$color-primary : $black;
+$color-white : $white;
+$color-accent : $grey;
+$color-shadow : rgba($black, .2);
+
+
+// UI Colors
+
+$ui-colors: (
+    default : $blue-grey,
+    web: $purple,
+    it : $blue,
+    digital : $green,
+    telecoms : $red,
+    software : $yellow-orange,
+    security : $hot-pink,
+    developer : $orange
+);
+
+// Color palette
+$palettes: (
+    colors: (default : $blue-grey,
+        web: $purple,
+        it : $blue,
+        digital : $green,
+        telecoms : $red,
+        software : $yellow-orange,
+        security : $hot-pink,
+        developer : $orange ),
+    borders : (web: $web-hov-b,
+        it : $it-hov-b,
+        digital : $digi-hov-b,
+        telecoms : $tele-hov-b,
+        software : $soft-hov-b,
+        security : $sec-hov-b,
+        developer : $dev-hov-b),
+    hover : (web: $web-hov,
+        it : $it-hov,
+        digital : $digi-hov,
+        telecoms : $tele-hov,
+        software : $soft-hov,
+        security : $sec-hov,
+        developer : $dev-hov),
+);
+
+// Border radius
+
+$br--default : 3px;
+$br--round : 50%;
+
+// Transitions
+
+$trns-duration : .5s;
+$trans-ease: ease;
+
+// Path to Assets
+
+$path--rel : "../img";
+
+// Media queries
+
+$brkpoint-sm : 768px;
+$brkpoint-md : 991px;
+$brkpoint-lg : 1261px;
+

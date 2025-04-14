@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Array Assessment</title>
+    <link rel="stylesheet" href="/scss/style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <header>
+            <div class="logo-container">
+                <h1>MILO</h1>
+            </div>
+            <button id="account-btn">Change account</button>
+        </header>
+
+        <!-- Sign in section -->
+        <section>
+            <div class="user-auth-panel">
+                <div class="register-container">
+                    <h2>Enter your email here to create an account</h2>
+                    <form action="#">
+                        <input type="text" placeholder="Email">
+                        <button type="submit">Create</button>
+                    </form>
+                </div>
+                <p class="divider">or</p>
+                <div class="login-container">
+                    <h2>Select an already existing email from below</h2>
+                    <div class="login-dropdown">
+                        <select name="users" id="users"></select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authenticated route -->
+        <div class="hidden">
+            <main>
+
+                <!-- Main Image -->
+                <div id="main-img" class="generated-image">
+                </div>
+
+                <div class="display-flex">
+                    <!-- Generated image info (hidden at smaller screen sizes) -->
+                    <div class="main-img-info-container"></div>
+
+                    <div class="main-img-btn-container">
+                        <!-- Buttons to control which image shown and filters applied -->
+                        <div class="control-btns">
+                            <button id="next">&lt;</button>
+                            <button id="previous">&gt;</button>
+                            <button id="grayscale">Grey</button>
+                            <button id="blur">Blur</button>
+                            <button id="key">?</button>
+                        </div>
+
+                        <!-- Submit photo button -->
+                        <button>Save</button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- User's saved images -->
+            <aside>
+                <div class="image-gallery-container">
+                    <h2>Saved Images</h2>
+                    <h2 class="hidden">No images saved!</h2>
+                    <div class="image-gallery">
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                        <div class="saved-img-container">
+                            <div class="saved-img-inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="brand-bg">
+            <p><small>&copy; MILO 2025</small></p>
+        </footer>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+// ==========================================================================
+// Functions
+// ==========================================================================
+
+// Import if Google Fonts URL is defined
+
+@if variable-exists(font-url--google) {
+    @import url($font-url--google);
+}
+
+// Call the color palette modifiers
+
+@function palette($category: 'colors', $theme: 'default') {
+    @return map-get(map-get($palettes, $category), $theme);
+}
+
+// Service functions
+@each $theme, $color in $ui-colors {
+    .service--#{$theme} {
+
+        .service__inner {
+            .icon-container {
+                background-color: $color;
+                border-color: $color;
+            }
+        }
+
+        &:hover {
+            .service__inner {
+                background-color: $color;
+                color: $color-white;
+
+                .icon-container {
+                    span {
+                        color: $color !important;
+                    }
+                }
+
+                [class^="btn--"],
+                button {
+                    color: $color ;
+                }
+            }
+        }
+    }
+}
+
+// Sub-menu color function
+@each $theme, $color in $ui-colors {
+    $sub-menu-bg-color: map-get($sub-menu-colors, $theme);
+
+    .main-nav__element--#{$theme} {
+        background-color: transparent;
+
+        span {
+            color: $color;
+        }
+
+        &:hover .main-nav__item {
+            background-color: $color;
+
+            &:before {
+                background-color: $color;
+            }
+        }
+
+        .main-nav__sub-menu__container {
+            background-color: $sub-menu-bg-color;
+        }
+    }
+}
+
+
+// Button hover function
+@each $theme, $color in $ui-colors {
+    .btn--#{$theme} {
+        &:hover {
+            background-color: palette(hover, $theme);
+            border-color: palette(borders, $theme);
+        }
+    }
+}

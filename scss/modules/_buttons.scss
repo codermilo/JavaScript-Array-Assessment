@@ -1,0 +1,33 @@
+.btn {
+    @extend %btn;
+    @include bg-colors($ui-colors);
+    font-size: 1.25rem;
+    background-color: #926fb1;
+    border: 1px solid #926fb1;
+    height: 60px;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: $br--default;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    gap: 1rem;
+    font-weight: $font-weight--medium;
+}
+
+[class^="btn--"] {
+    @extend %center-align;
+    @extend %btn;
+}
+
+.google {
+    background-color: #4387f6 !important;
+    border-color: #4387f6 !important;
+}
+
+.trustpilot {
+    background-color: #00b67b !important;
+    border-color: #00b67b !important;
+}

@@ -1,0 +1,16 @@
+// Buttons
+
+%btn {
+    padding: 5px 15px;
+    border: 0;
+    border-radius: $br--default;
+    color: $white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: $font-weight--medium;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.4rem;
+    margin-inline: auto;
+}
