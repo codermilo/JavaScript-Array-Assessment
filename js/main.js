@@ -297,16 +297,7 @@ const px = { h: 1920, w: 1080 };
 // Function can be used to generate random image ids or retrieve specific ones from array
 async function generateUrl(index) {
     if (index !== undefined) {
-        const img = imgArray[index];
-        // Regex to retrieve portion of url
-        const regex = /^(https:\/\/fastly\.picsum\.photos\/id\/\d+)/;
-        const validUrl = img.match(regex);
-        if (validUrl) {
-            url = `${validUrl[1]}/${px.h}/${px.w}.webp`;
-        } else {
-            throw new Error(`No match found`);
-        }
-        console.log('preexisting URL: ', url);
+        const url = imgArray[index];
         return url;
     } else {
         // Generate random url from picsum
@@ -353,9 +344,7 @@ async function setMainImage(change) {
         }
     } else {
         // Generate random image when no param passed (Usually on window load)
-        if (index <= 1) {
-            console.log('index is 0');
-        } else {
+        if (index !== 0) {
             index++;
         }
         url = await generateUrl();
