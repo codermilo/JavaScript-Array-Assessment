@@ -587,13 +587,10 @@ ul li {
 }
 
 .page-wrapper {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   height: 100vh;
   max-height: 100vh;
-  max-width: 1080px;
-  margin-inline: auto;
 }
 @media (min-width: 1261px) {
   .page-wrapper {
@@ -601,6 +598,7 @@ ul li {
     height: fit-content;
     max-height: -moz-fit-content;
     max-height: fit-content;
+    min-height: 100vh;
   }
 }
 
@@ -616,7 +614,6 @@ main {
   min-height: 350px;
   position: relative;
   overflow: hidden;
-  background-image: url(https://picsum.photos/id/1050/1048/526.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -682,6 +679,12 @@ main {
   .image-gallery-container .image-gallery .saved-img-container .saved-img-inner {
     background-color: black;
   }
+}
+
+#auth-route {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
 .btn {
@@ -761,13 +764,14 @@ main {
 }
 
 footer {
-  padding: 0.25rem;
+  padding: 0.25rem 1rem;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 }
 header button {
   height: -moz-fit-content;
@@ -797,6 +801,26 @@ header button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-inline: auto;
+}
+.user-auth-panel input,
+.user-auth-panel form {
+  width: 100%;
+}
+.user-auth-panel form {
+  display: flex;
+}
+.user-auth-panel li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid black;
+  padding: 0.5rem 0.5rem;
+}
+.user-auth-panel li:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 section {
@@ -804,9 +828,19 @@ section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  max-width: 1080px;
+  padding: 1rem;
+  margin-inline: auto;
 }
 
 .divider {
   text-decoration: underline;
   font-style: italic;
+}
+
+.login-container,
+.register-container {
+  width: 100%;
+  border: 1px solid black;
+  padding: 4rem 2rem;
 }

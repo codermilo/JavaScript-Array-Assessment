@@ -5,6 +5,30 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-inline: auto;
+
+    input,
+    form {
+        width: 100%;
+    }
+
+    form {
+        display: flex;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid black;
+        padding: 0.5rem .5rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
 }
 
 section {
@@ -12,9 +36,19 @@ section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    max-width: 1080px;
+    padding: 1rem;
+    margin-inline: auto;
 }
 
 .divider {
     text-decoration: underline;
     font-style: italic;
+}
+
+.login-container,
+.register-container {
+    width: 100%;
+    border: 1px solid black;
+    padding: 4rem 2rem;
 }
