@@ -290,24 +290,32 @@ function getUserGallery() {
 
 }
 
-// Function to generate random image for main iimage
-
-function getRandomNumber() {
-    return Math.floor(Math.random() * (1050 - 0 + 1)) + 0;
-}
-
 const $mainImg = $('#main-img');
 // Get size of parent container to generate image dimensions
 const px = { h: 1920, w: 1080 };
 
 // Function can be used to generate random image ids or retrieve specific ones from array
-function generateId(index) {
+async function generateUrl(index) {
     if (index !== undefined) {
-        return imgArray[index];
+        const img = imgArray[index];
+        // Regex to retrieve portion of url
+        const regex = /^(https:\/\/fastly\.picsum\.photos\/id\/\d+)/;
+        const validUrl = img.match(regex);
+        if (validUrl) {
+            url = `${validUrl[1]}/${px.h}/${px.w}.webp`;
+        } else {
+            throw new Error(`No match found`);
+        }
+        console.log('preexisting URL: ', url);
+        return url;
     } else {
-        // Generate random number for id
-        const random = getRandomNumber();
-        return random;
+        // Generate random url from picsum
+        let response = await fetch(`https://picsum.photos/${px.h}/${px.w}.webp`);
+        if (!response.ok) {
+            throw new Error(`Error fetching new image: ${response.status}`);
+        }
+        console.log('url', response.url);
+        return response.url;
     }
 }
 
@@ -316,34 +324,31 @@ const imgArray = []
 let index = 0;
 
 // Function to populate or change main image. Pass param to use image from array
-function setMainImage(change) {
-    console.log('imgArray.length in setMainImage', imgArray.length);
-    console.log('index in setMainImage', index);
-    let id;
+async function setMainImage(change) {
+    let url;
     // If you pass a param (i.e. to view a previously generated image)
     if (change) {
         // If param is forward then generate a new image and attach it to array as well
         if (change == "next") {
             index++;
-            console.log('next clicked, index in setMainImg is: ', index, 'imgArray.length is: ', imgArray.length);
             // If index is longer than imgArray then generate a new image
             if (index >= imgArray.length) {
-                id = generateId();
-                imgArray.push(id);
+                url = await generateUrl();
+                imgArray.push(url);
             } else {
-                // Get the ID of imgArray[index]
-                id = generateId(index);
+                // Get the URL of imgArray[index]
+                url = await generateUrl(index);
             }
 
         } else if (change == "previous") {
             // If index is lower than 0 then generate new id and unshift it onto imgArray
             if (index <= 0) {
                 // Don't change index if it's at 0
-                id = generateId();
-                imgArray.unshift(id);
+                url = await generateUrl();
+                imgArray.unshift(url);
             } else {
                 index--;
-                id = generateId(index);
+                url = await generateUrl(index);
             }
         }
     } else {
@@ -353,11 +358,9 @@ function setMainImage(change) {
         } else {
             index++;
         }
-        id = generateId();
-        imgArray.push(id);
+        url = await generateUrl();
+        imgArray.push(url);
     }
-    console.log('ID is: ', id);
-    const url = `https://picsum.photos/id/${id}/${px.h}/${px.w}`;
     $mainImg.css('background-image', `url(${url})`);
 }
 
@@ -375,3 +378,6 @@ $previousBtn.click(() => {
     console.log('previous button clicked');
     setMainImage('previous');
 })
+
+// Function to generateImgUrl 
+
