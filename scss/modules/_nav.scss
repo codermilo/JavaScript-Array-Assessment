@@ -2,7 +2,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    // padding: 1rem;
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
 
     button {
         height: fit-content;

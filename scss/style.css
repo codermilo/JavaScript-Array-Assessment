@@ -586,6 +586,16 @@ ul li {
   }
 }
 
+section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 1080px;
+  padding: 1rem;
+  margin-inline: auto;
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -672,6 +682,9 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.image-gallery-container .image-gallery .saved-img-container .saved-img-inner:hover {
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .image-gallery-container .image-gallery .saved-img-container .saved-img-inner {
@@ -769,7 +782,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
 }
 header button {
   height: -moz-fit-content;
@@ -819,16 +834,6 @@ header button {
 .user-auth-panel li:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
-}
-
-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: 1080px;
-  padding: 1rem;
-  margin-inline: auto;
 }
 
 .divider {

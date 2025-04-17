@@ -26,7 +26,6 @@ const $deleteBtn = $('#delete');
 $deleteBtn.click(() => {
     console.log('delete button clicked');
     deleteUser($emailInput.val());
-    console.log(getUsers());
 })
 
 const $loginBtn = $('#login');
@@ -48,7 +47,6 @@ const $saveBtn = $('#save');
 $saveBtn.click((id) => {
     console.log('save button clicked');
     addImage(id);
-    console.log(getUsers(), id);
 })
 
 
@@ -307,15 +305,63 @@ function getUserGallery() {
 
             // Create saved-img-inner. Set the background to img
             const inner = `<a href="${img}"><div class="saved-img-inner" style="background-image: url(${img})"></div></a>`;
+            const deleteBtn = '<button class="delete-btn">X</button>';
 
             // Push the element to html
-            const imageEl = '<div class="saved-img-container">' + inner + '</div>';
+            const imageEl = '<div class="saved-img-container">' + inner + deleteBtn + '</div>';
             html += imageEl;
         });
         // Set the innerHtml of $imgGallery to html
         $imgGallery.html(html);
     }
 }
+
+// Function to delete a user's saved image from gallery
+function deleteImg(img) {
+
+    function filterImages(user) {
+        const filteredImages = user.savedImages.filter(x => x !== img);
+        return filteredImages;
+    }
+
+    // Get logged in user (For security purposes)
+    const users = getUsers();
+    const authUser = users.filter(user => user.isLoggedIn === true)[0];
+    if (authUser) {
+        // Remove matching image from savedImages
+        const alteredUsers = users.map((userObj) => {
+            if (userObj === authUser) {
+                const filteredImages = filterImages(userObj);
+                return { ...userObj, savedImages: filteredImages };
+            } else {
+                return userObj;
+            }
+        });
+
+        // Set Users to include updated user object
+        setUsers(alteredUsers)
+    } else {
+        throw new Error('Error: cannot find logged in user!');
+    }
+}
+
+// Function to listen for delete click
+const $imageGallery = $('.image-gallery');
+$imageGallery.on("click", '.delete-btn', function (event) {
+    // Prevent the event from bubbling up to the parent
+    event.stopPropagation();
+    const $inner = $(this)
+        .closest('.saved-img-container')
+        .find('.saved-img-inner');
+    // Grab background image
+    const bg = $inner.css('background-image');
+    // Strip the url() from bg
+    const img = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+    deleteImg(img);
+
+    // Finally call getUserGallery to update user's gallery
+    getUserGallery();
+})
 
 const $mainImg = $('#main-img');
 // Get size of parent container to generate image dimensions
