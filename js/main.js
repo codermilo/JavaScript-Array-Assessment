@@ -43,7 +43,7 @@ $logoutBtn.click(() => {
     console.log(getUsers());
 })
 
-// *** Need to save id so that save btn can access it ***
+// Function to save main-img to user's gallery
 const $saveBtn = $('#save');
 $saveBtn.click((id) => {
     console.log('save button clicked');
@@ -57,6 +57,7 @@ $saveBtn.click((id) => {
 function showAuthRoute() {
     $authRoute.removeClass('hidden');
     $loginRoute.addClass('hidden');
+    getUserGallery();
 }
 
 // Function to style page so auth route is hidden
@@ -203,17 +204,22 @@ function emailSubmit(email) {
 }
 
 // Function to add image to logged in user's imageArray
-function addImage(id) {
+function addImage() {
+    // Get the url currently used as background for main-img. Should be same as imgArray[index]
+    const url = imgArray[index];
+
     // Get users so I can filter and modify list
     const users = getUsers();
     const changedUsers = users.map((userObj) => {
         if (userObj.isLoggedIn === true) {
-            // Check if user already has image id already saved
-            const hasImage = userObj.savedImages.find((img) => img === id);
-            if (hasImage) {
+            // Check if user already has image url already saved
+            const hasImage = userObj.savedImages.find((img) => img === url);
+            console.log('hasImage: ', hasImage);
+            console.log('url in addImage: ', url)
+            if (!hasImage) {
                 return {
                     ...userObj,
-                    savedImages: [...userObj.savedImages, id]
+                    savedImages: [url, ...userObj.savedImages]
                 };
             } else {
                 console.log('User has already saved that image!');
@@ -224,6 +230,8 @@ function addImage(id) {
         }
     });
     setUsers(changedUsers);
+    // Refresh user's img gallery 
+    getUserGallery();
 }
 
 // Function to append login accounts to sign in section
@@ -283,11 +291,30 @@ populateEmailList();
 loginCheck();
 
 // Function get user's profile and render their images
-// - Need function to get images
-// - To generate images
-// - To append images to .image-gallery
 function getUserGallery() {
+    // Start by getting logged in user's img gallery
+    const users = getUsers();
+    const authUser = users.filter(user => user.isLoggedIn === true)[0];
 
+    // Create the .html()
+    let html = "";
+
+    // Loop through authUser's images and push the image to html string
+    if (authUser) {
+        const $imgGallery = $('.image-gallery');
+
+        authUser.savedImages.forEach((img) => {
+
+            // Create saved-img-inner. Set the background to img
+            const inner = `<a href="${img}"><div class="saved-img-inner" style="background-image: url(${img})"></div></a>`;
+
+            // Push the element to html
+            const imageEl = '<div class="saved-img-container">' + inner + '</div>';
+            html += imageEl;
+        });
+        // Set the innerHtml of $imgGallery to html
+        $imgGallery.html(html);
+    }
 }
 
 const $mainImg = $('#main-img');
@@ -368,5 +395,6 @@ $previousBtn.click(() => {
     setMainImage('previous');
 })
 
-// Function to generateImgUrl 
+
+
 

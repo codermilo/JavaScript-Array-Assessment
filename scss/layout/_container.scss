@@ -40,7 +40,6 @@ main {
     min-height: 350px;
     position: relative;
     overflow: hidden;
-    // background-image: url(https://picsum.photos/id/1050/1048/526.webp);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -93,10 +92,8 @@ main {
             }
 
             .saved-img-inner {
-                background-color: aqua;
                 height: 100%;
                 width: 100%;
-                background-image: url(https://picsum.photos/id/250/250/526.webp);
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
