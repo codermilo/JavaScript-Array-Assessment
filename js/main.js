@@ -41,6 +41,12 @@ $saveBtn.click((id) => {
 })
 
 
+// Button functionality to change main image
+$nextBtn = $('#next');
+$previousBtn = $('#previous');
+
+// Loader component
+$loader = $('.loading-container');
 
 // Function to style page so auth route is shown
 function showAuthRoute() {
@@ -357,7 +363,7 @@ $imageGallery.on("click", '.delete-btn', function (event) {
 })
 
 const $mainImg = $('#main-img');
-// Get size of parent container to generate image dimensions
+// Get size of parent container to generate image dimensions (Can use this for future function additions)
 const px = { h: 1920, w: 1080 };
 
 // Function can be used to generate random image ids or retrieve specific ones from array
@@ -382,6 +388,11 @@ let index = 0;
 
 // Function to populate or change main image. Pass param to use image from array
 async function setMainImage(change) {
+
+    // Disable buttons immediately while image changes and show loader
+    setButtonsEnabled(false);
+    $loader.addClass('visible');
+
     let url;
     // If you pass a param (i.e. to view a previously generated image)
     if (change) {
@@ -416,16 +427,29 @@ async function setMainImage(change) {
         url = await generateUrl();
         imgArray.push(url);
     }
-    $mainImg.css('background-image', `url(${url})`);
+    // Preload via Image() and only swap & re‑enable on load
+    // Create new image element but don't attach it to the dom
+    const img = new Image();
+    // On img load set the mainImg background to the new URL
+    img.onload = () => {
+        $mainImg.css('background-image', `url(${url})`);
+        setButtonsEnabled(true);
+        $loader.removeClass('visible');
+    };
+    img.onerror = () => {
+        console.error('Failed to load', url);
+        // you might want to re‑enable or show an error state
+        setButtonsEnabled(true);
+        $loader.removeClass('visible');
+    };
+    // Async fetch URL and when download completes call onload
+    img.src = url;
 }
 
 
 // Set main image on load
 setMainImage();
 
-// Button functionality to change main image
-$nextBtn = $('#next');
-$previousBtn = $('#previous');
 // Generate new image and send it to image array
 $nextBtn.click(() => {
     console.log('next button clicked');
@@ -435,6 +459,13 @@ $previousBtn.click(() => {
     console.log('previous button clicked');
     setMainImage('previous');
 })
+
+// Function to enable/disable main image buttons
+function setButtonsEnabled(isEnabled) {
+    $nextBtn.prop('disabled', !isEnabled);
+    $previousBtn.prop('disabled', !isEnabled);
+}
+
 
 
 
