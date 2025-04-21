@@ -644,11 +644,14 @@ main {
 }
 
 .main-img-btn-container {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   padding: 0 0 0.5rem 0;
+}
+.main-img-btn-container .control-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.main-img-btn-container .control-btns button {
+  padding: 0.5rem 2rem;
 }
 
 .image-gallery-container {
@@ -669,6 +672,7 @@ main {
   width: 100%;
   height: 250px;
   padding: 0.5rem;
+  position: relative;
 }
 @media (min-width: 768px) {
   .image-gallery-container .image-gallery .saved-img-container {
@@ -691,11 +695,28 @@ main {
     background-color: black;
   }
 }
+.image-gallery-container .image-gallery .saved-img-container .delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  outline: none;
+  border: none;
+}
+.image-gallery-container .image-gallery .saved-img-container .delete-btn:hover {
+  background-color: rgb(236, 0, 0);
+  cursor: pointer;
+}
 
 #auth-route {
   width: 100%;
   max-width: 1080px;
   margin-inline: auto;
+  padding: 1rem;
 }
 
 .btn {
@@ -782,6 +803,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 1rem;
   width: 100%;
   max-width: 1080px;
   margin-inline: auto;

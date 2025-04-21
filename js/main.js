@@ -1,13 +1,4 @@
 
-/*
-********* use a randomly generated id number (max 1050) and then apply that to the url for the image and that way I can call the photo's info as well to store it... *********
-*/
-
-/* Functions to generate new image, to save the image in local array, save index, render images based on the index, save button states for blur and grayscale */
-
-/* Functions to grab array of users from local storage, to check if submitted email is there, to add that email to the array, to add any new images to that user's array (or delete) */
-
-
 const $authRoute = $('#auth-route');
 const $loginRoute = $('#login-route');
 
@@ -55,6 +46,7 @@ $saveBtn.click((id) => {
 function showAuthRoute() {
     $authRoute.removeClass('hidden');
     $loginRoute.addClass('hidden');
+    $logoutBtn.removeClass('hidden');
     getUserGallery();
 }
 
@@ -62,6 +54,7 @@ function showAuthRoute() {
 function hideAuthRoute() {
     $authRoute.addClass('hidden');
     $loginRoute.removeClass('hidden');
+    $logoutBtn.addClass('hidden');
     // Call populate user list as user will be seeing login section again
     populateEmailList();
 }
@@ -426,6 +419,8 @@ async function setMainImage(change) {
     $mainImg.css('background-image', `url(${url})`);
 }
 
+
+// Set main image on load
 setMainImage();
 
 // Button functionality to change main image
