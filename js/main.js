@@ -62,13 +62,21 @@ function hideAuthRoute() {
     populateEmailList();
 }
 
-// Function to retrieve users from local storage
 function getUsers() {
     // Retrieve users json from local storage 
-    const storedUsers = localStorage.getItem('usersList');
-    // Convert json to array of objects
-    const usersArray = JSON.parse(storedUsers);
-    return usersArray;
+    const raw = localStorage.getItem("usersList");
+    if (!raw) {
+        // no key yet in storage → start with an empty list
+        return [];
+    }
+    try {
+        // parse, but if it’s null or invalid JSON, fall back to []
+        const arr = JSON.parse(raw);
+        return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+        console.warn("Could not parse usersList from localStorage:", e);
+        return [];
+    }
 }
 
 // Function to set users in local storage
